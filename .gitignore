@@ -31,3 +31,16 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Node / Frontend ###
+node_modules/
+frontend/dist/
+frontend/.vite/
+*.local
+.env
+.env.*
+!.env.example
+
+### Backend ###
+backend/target/
+
