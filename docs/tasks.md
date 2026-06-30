@@ -59,29 +59,29 @@ Planejamento de execução seguindo o framework **Scrum**, organizado em
 > Persistência relacional estrita com isolamento por `tenant_id`.
 
 ### 🧩 HU-01.0 — Como dev, quero o esqueleto hexagonal por contexto.  `3 SP`
-- ⬜ TASK-01.0.1 — Criar pacotes por contexto (`tenant`, `auth`, `customer`, `budget`) com camadas `domain`, `application/port/{in,out}`, `application/service`, `adapter/{in/web, out/persistence}`.
-- ⬜ TASK-01.0.2 — Criar pacote `shared/` (`tenancy`, `security`, `config`).
+- ✅ TASK-01.0.1 — Criar pacotes por contexto (`tenant`, `auth`, `customer`, `budget`) com camadas `domain`, `application/port/{in,out}`, `application/service`, `adapter/{in/web, out/persistence}`.
+- ✅ TASK-01.0.2 — Criar pacote `shared/` (`tenancy`, `security`, `config`).
 - ⬜ TASK-01.0.3 — (Opcional) Teste ArchUnit garantindo a regra de dependência (domínio não importa Spring/JPA).
 
 ### 🧩 HU-01.1 — Como sistema, quero o domínio modelado conforme o negócio.  `5 SP`
-- ⬜ TASK-01.1.1 — Adicionar dependência H2 ao `pom.xml` e configurar `application.properties`.
-- ⬜ TASK-01.1.2 — Modelo de domínio `Tenant` (`id`, `name`, `status`) — contexto global.
-- ⬜ TASK-01.1.3 — Modelo de domínio `User` (`id`, `tenant_id`, `name`, `email`, `password_hash`).
-- ⬜ TASK-01.1.4 — Modelo de domínio `Customer` (`id`, `tenant_id`, `name`, `phone`, `document_id`).
-- ⬜ TASK-01.1.5 — Modelo de domínio `Budget` (`id`, `tenant_id`, `customer_id`, `total_amount`, `status` enum).
-- ⬜ TASK-01.1.6 — Definir **output ports** de persistência (`...RepositoryPort`) por contexto.
+- ✅ TASK-01.1.1 — Adicionar dependência H2 ao `pom.xml` e configurar `application.properties`.
+- ✅ TASK-01.1.2 — Modelo de domínio `Tenant` (`id`, `name`, `status`) — contexto global.
+- ✅ TASK-01.1.3 — Modelo de domínio `User` (`id`, `tenant_id`, `name`, `email`, `password_hash`).
+- ✅ TASK-01.1.4 — Modelo de domínio `Customer` (`id`, `tenant_id`, `name`, `phone`, `document_id`).
+- ✅ TASK-01.1.5 — Modelo de domínio `Budget` (`id`, `tenant_id`, `customer_id`, `total_amount`, `status` enum).
+- ✅ TASK-01.1.6 — Definir **output ports** de persistência (`...RepositoryPort`) por contexto.
 
 ### 🧩 HU-01.3 — Como sistema, quero adapters de persistência (JPA/H2).  `5 SP`
-- ⬜ TASK-01.3.1 — `...JpaEntity` (mapeamento JPA) separada do modelo de domínio.
-- ⬜ TASK-01.3.2 — `...JpaRepository` (Spring Data) por contexto.
-- ⬜ TASK-01.3.3 — `...PersistenceAdapter` implementando os output ports (mapeia domínio ↔ entidade JPA).
-- ⬜ TASK-01.3.4 — Seed de dados (`data.sql`) com tenant, usuário e clientes de exemplo.
+- ✅ TASK-01.3.1 — `...JpaEntity` (mapeamento JPA) separada do modelo de domínio.
+- ✅ TASK-01.3.2 — `...JpaRepository` (Spring Data) por contexto.
+- ✅ TASK-01.3.3 — `...PersistenceAdapter` implementando os output ports (mapeia domínio ↔ entidade JPA).
+- ✅ TASK-01.3.4 — Seed de dados (`data.sql`) com tenant, usuário e clientes de exemplo.
 
 ### 🧩 HU-01.2 — Como sistema, quero isolar dados por tenant automaticamente.  `8 SP`
-- ⬜ TASK-01.2.1 — `TenantContext` (ThreadLocal) para o tenant da requisição.
-- ⬜ TASK-01.2.2 — Filtro/interceptor que resolve o `tenant_id` a partir do JWT.
-- ⬜ TASK-01.2.3 — Estratégia de filtro automático por `tenant_id` nas queries (Hibernate Filter).
-- ⬜ TASK-01.2.4 — Testes garantindo que um tenant não acessa dados de outro.
+- ✅ TASK-01.2.1 — `TenantContext` (ThreadLocal) para o tenant da requisição.
+- ✅ TASK-01.2.2 — Filtro/interceptor que resolve o `tenant_id` a partir do JWT.
+- ✅ TASK-01.2.3 — Estratégia de filtro automático por `tenant_id` nas queries (Hibernate Filter).
+- ✅ TASK-01.2.4 — Testes garantindo que um tenant não acessa dados de outro.
 
 ---
 

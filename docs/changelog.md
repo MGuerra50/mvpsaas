@@ -10,6 +10,21 @@ e o projeto adota o versionamento semântico ([SemVer](https://semver.org/lang/p
 ## [Não Lançado]
 
 ### Adicionado
+- **Adapters JPA/H2** por contexto: `*JpaEntity`, `*JpaRepository`, `*PersistenceMapper`,
+  `*PersistenceAdapter` para `tenant`, `auth`, `customer` e `budget`.
+- Seed inicial em `data.sql` com dois tenants, usuários, clientes e orçamentos de exemplo.
+- **Multi-tenancy**: `TenantContext` (ThreadLocal), `TenantContextFilter`, `JwtTenantExtractor`
+  (infra JWT mínima com `jjwt`), `TenantHibernateFilterEnabler` e Hibernate Filter `tenantFilter`.
+- `SecurityConfig` stateless temporária (`permitAll`) até o EP-02.
+- Testes: `TenantContextTest`, `MultiTenantIsolationTest`, `JwtTenantExtractorTest`.
+- Esqueleto **hexagonal por contexto** no backend (`tenant`, `auth`, `customer`, `budget`) com camadas
+  `domain`, `application/port/{in,out}`, `application/service` e `adapter/{in/web, out/persistence}`.
+- Pacote transversal `shared/` (`tenancy`, `security`, `config`).
+- Modelos de domínio puros: `Tenant`, `User`, `Customer`, `Budget` (enums `TenantStatus`, `BudgetStatus`).
+- Output ports de persistência: `TenantRepositoryPort`, `UserRepositoryPort`, `CustomerRepositoryPort`,
+  `BudgetRepositoryPort`.
+- Dependência **H2** no `pom.xml` e configuração de datasource/JPA em `application.properties` e
+  `application-docker.properties`.
 - Reorganização do repositório para a estrutura de **monorepo**:
   - Projeto Spring Boot existente movido para `backend/`.
   - Criadas as pastas `frontend/`, `docs/` e `infra/`.
@@ -30,9 +45,7 @@ e o projeto adota o versionamento semântico ([SemVer](https://semver.org/lang/p
 
 ### Planejado (próximas etapas)
 - Validação end-to-end do `docker compose up --build`.
-- Modelagem das entidades JPA e configuração do banco H2.
-- Implementação de multi-tenancy por `tenant_id`.
-- Autenticação JWT com Access Token + Refresh Token em cookie HTTP-only.
+- Autenticação JWT com Access Token + Refresh Token em cookie HTTP-only (endpoints de login).
 - APIs de CRM e Orçamentos.
 - Front-end React + Vite + shadcn/ui (Dashboard, CRM, Construtor de Orçamentos).
 - Integração com WhatsApp via `wa.me`.
