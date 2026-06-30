@@ -4,24 +4,26 @@ services:
       context: ./backend
     container_name: orcazap-backend
     ports:
-      - "8080:8080"
+      - "${ORCAZAP_BACKEND_PORT:-8081}:8080"
     environment:
       SPRING_PROFILES_ACTIVE: docker
     healthcheck:
-      test: ["CMD", "wget", "--spider", "-q", "http://localhost:8080/actuator/health"]
+      test: ["CMD-SHELL", "curl -s --connect-timeout 3 http://localhost:8080/h2-console >/dev/null"]
       interval: 15s
       timeout: 5s
       retries: 5
+      start_period: 30s
 
   frontend:
     build:
       context: ./frontend
+      args:
+        VITE_API_BASE_URL: http://localhost:${ORCAZAP_BACKEND_PORT:-8081}/api
     container_name: orcazap-frontend
     ports:
       - "5173:5173"
-    environment:
-      VITE_API_BASE_URL: http://localhost:8080/api
     depends_on:
       - backend
 
 # H2 é embarcado no backend (em memória / arquivo), portanto não há serviço de banco separado.
+# Se a porta 8080 já estiver em uso (ex.: outro projeto Docker), o backend sobe em 8081 por padrão.

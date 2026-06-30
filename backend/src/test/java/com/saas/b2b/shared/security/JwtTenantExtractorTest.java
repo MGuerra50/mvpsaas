@@ -20,7 +20,7 @@ class JwtTenantExtractorTest {
 
 	@Test
 	void deveExtrairTenantIdDeTokenValido() {
-		String token = TestJwtFactory.createToken(1L, SECRET);
+		String token = TestJwtFactory.createAccessToken(1L, 1L, "admin@alpha.com", SECRET);
 
 		var tenantId = jwtTenantExtractor.extractTenantId("Bearer " + token);
 

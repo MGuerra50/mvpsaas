@@ -1,6 +1,7 @@
 package com.saas.b2b.budget.domain.model;
 
 import java.math.BigDecimal;
+import java.time.Instant;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -17,4 +18,5 @@ public class Budget {
 	private final Long customerId;
 	private final BigDecimal totalAmount;
 	private final BudgetStatus status;
+	private final Instant createdAt;
 }

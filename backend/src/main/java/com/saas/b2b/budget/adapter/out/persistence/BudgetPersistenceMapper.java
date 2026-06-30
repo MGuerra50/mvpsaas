@@ -14,6 +14,7 @@ public final class BudgetPersistenceMapper {
 				.customerId(entity.getCustomerId())
 				.totalAmount(entity.getTotalAmount())
 				.status(entity.getStatus())
+				.createdAt(entity.getCreatedAt())
 				.build();
 	}
 
@@ -24,6 +25,7 @@ public final class BudgetPersistenceMapper {
 		entity.setCustomerId(budget.getCustomerId());
 		entity.setTotalAmount(budget.getTotalAmount());
 		entity.setStatus(budget.getStatus());
+		entity.setCreatedAt(budget.getCreatedAt());
 		return entity;
 	}
 }

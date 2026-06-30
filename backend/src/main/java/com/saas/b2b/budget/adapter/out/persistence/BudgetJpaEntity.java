@@ -1,6 +1,9 @@
 package com.saas.b2b.budget.adapter.out.persistence;
 
 import java.math.BigDecimal;
+import java.time.Instant;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 import com.saas.b2b.budget.domain.model.BudgetStatus;
 import com.saas.b2b.shared.tenancy.TenantAwareJpaEntity;
@@ -37,4 +40,8 @@ public class BudgetJpaEntity extends TenantAwareJpaEntity {
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
 	private BudgetStatus status;
+
+	@CreationTimestamp
+	@Column(name = "created_at", nullable = false, updatable = false)
+	private Instant createdAt;
 }

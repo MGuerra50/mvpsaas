@@ -10,6 +10,41 @@ e o projeto adota o versionamento semântico ([SemVer](https://semver.org/lang/p
 ## [Não Lançado]
 
 ### Adicionado
+- **Construtor de Orçamentos / PDV (EP-07)**:
+  - `BudgetsPage` com layout de duas colunas (busca de produtos, descontos, espelho dinâmico).
+  - Catálogo mock de produtos, cálculo de totais em tempo real.
+  - Botão "Aprovar e Enviar via WhatsApp" com `wa.me`, mensagem formatada e persistência `APPROVED`.
+  - Integração com `POST /api/budgets` e `PATCH /api/budgets/{id}/status`.
+- **Landing Page (EP-08)**:
+  - `LandingPage` pública em `/` com header, hero, recursos, preços, depoimento e footer escuro.
+  - App autenticado movido para `/dashboard`, `/customers`, `/budgets`.
+- **Dashboard (EP-05)**:
+  - `AppLayout` com sidebar fixa (Dashboard, Clientes, Sair).
+  - `DashboardPage` com card de Faturamento Total Bruto e gráfico Recharts (`monthlyRevenue`).
+  - Integração com `GET /api/dashboard/metrics`.
+- **CRM Clientes (EP-06)**:
+  - `CustomersPage` com data table (`@tanstack/react-table`), paginação, busca com debounce.
+  - `CustomerFormDialog` para criar/editar clientes via API REST.
+  - Integração com `GET/POST/PUT/DELETE /api/customers`.
+- **APIs de CRM e Orçamentos (EP-03)**:
+  - `CustomerController` — CRUD com paginação, busca (`?search=`) e validação.
+  - `BudgetController` — listagem por status, criação `DRAFT`, `PATCH /status`.
+  - `DashboardController` — `GET /api/dashboard/metrics` (faturamento bruto + série mensal).
+  - `GlobalExceptionHandler`, `PageResult`, `TenantContext.requireCurrentTenantId()`.
+  - Campo `createdAt` no modelo `Budget` para métricas temporais.
+  - Testes: `CustomerControllerIntegrationTest`, `BudgetControllerIntegrationTest`,
+    `DashboardControllerIntegrationTest`.
+- **Frontend base (EP-04)**:
+  - Projeto Vite + React + TypeScript em `frontend/`.
+  - Tailwind CSS v4 (tema light, accent `#F97316`), componentes shadcn/ui base.
+  - React Router com rotas públicas/privadas, `AuthContext`, `LoginPage`, axios com refresh automático.
+  - `Dockerfile` do frontend atualizado com `ARG VITE_API_BASE_URL`.
+- **Autenticação JWT (HU-02.1)**: `JwtTokenProvider`, `JwtAuthenticationFilter`, `AuthService`,
+  `AuthController` (`POST /api/auth/login`, `/refresh`, `/logout`), cookie HTTP-only para refresh token,
+  `CorsConfig`, BCrypt via `PasswordEncoderConfig`.
+- Input ports: `LoginUseCase`, `RefreshTokenUseCase`. Output ports: `TokenGenerationPort`,
+  `RefreshTokenValidationPort`. Adapter: `JwtTokenAdapter`.
+- Testes de integração: `AuthControllerIntegrationTest`.
 - **Adapters JPA/H2** por contexto: `*JpaEntity`, `*JpaRepository`, `*PersistenceMapper`,
   `*PersistenceAdapter` para `tenant`, `auth`, `customer` e `budget`.
 - Seed inicial em `data.sql` com dois tenants, usuários, clientes e orçamentos de exemplo.
@@ -45,11 +80,6 @@ e o projeto adota o versionamento semântico ([SemVer](https://semver.org/lang/p
 
 ### Planejado (próximas etapas)
 - Validação end-to-end do `docker compose up --build`.
-- Autenticação JWT com Access Token + Refresh Token em cookie HTTP-only (endpoints de login).
-- APIs de CRM e Orçamentos.
-- Front-end React + Vite + shadcn/ui (Dashboard, CRM, Construtor de Orçamentos).
-- Integração com WhatsApp via `wa.me`.
-- Landing Page de vendas.
 
 ---
 
