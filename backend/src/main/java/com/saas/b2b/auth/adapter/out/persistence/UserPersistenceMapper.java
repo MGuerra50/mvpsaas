@@ -14,6 +14,7 @@ public final class UserPersistenceMapper {
 				.name(entity.getName())
 				.email(entity.getEmail())
 				.passwordHash(entity.getPasswordHash())
+				.profileImageUrl(entity.getProfileImageUrl())
 				.build();
 	}
 
@@ -24,6 +25,7 @@ public final class UserPersistenceMapper {
 		entity.setName(user.getName());
 		entity.setEmail(user.getEmail());
 		entity.setPasswordHash(user.getPasswordHash());
+		entity.setProfileImageUrl(user.getProfileImageUrl());
 		return entity;
 	}
 }

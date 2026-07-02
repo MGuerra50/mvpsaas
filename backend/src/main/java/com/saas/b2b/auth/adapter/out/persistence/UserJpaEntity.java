@@ -31,4 +31,7 @@ public class UserJpaEntity extends TenantAwareJpaEntity {
 
 	@Column(name = "password_hash", nullable = false)
 	private String passwordHash;
+
+	@Column(name = "profile_image_url", columnDefinition = "TEXT")
+	private String profileImageUrl;
 }

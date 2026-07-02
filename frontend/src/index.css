@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --color-background: #ffffff;
   --color-foreground: #0f172a;
@@ -14,6 +16,21 @@
   --color-input: #e2e8f0;
   --color-ring: #f97316;
   --radius: 0.5rem;
+}
+
+.dark {
+  --color-background: #0f172a;
+  --color-foreground: #f8fafc;
+  --color-muted: #1e293b;
+  --color-muted-foreground: #94a3b8;
+  --color-border: #334155;
+  --color-primary: #f97316;
+  --color-primary-foreground: #ffffff;
+  --color-card: #1e293b;
+  --color-card-foreground: #f8fafc;
+  --color-destructive: #f87171;
+  --color-input: #334155;
+  --color-ring: #f97316;
 }
 
 * {

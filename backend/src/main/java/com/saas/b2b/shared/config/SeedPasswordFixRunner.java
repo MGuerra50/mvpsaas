@@ -38,6 +38,7 @@ public class SeedPasswordFixRunner implements ApplicationRunner {
 					.name(user.getName())
 					.email(user.getEmail())
 					.passwordHash(passwordEncoder.encode(DEMO_PASSWORD))
+					.profileImageUrl(user.getProfileImageUrl())
 					.build());
 		});
 	}
