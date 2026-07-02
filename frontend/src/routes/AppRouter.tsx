@@ -9,6 +9,7 @@ import { CustomersPage } from "@/pages/CustomersPage";
 import { DashboardPage } from "@/pages/DashboardPage";
 import { LandingPage } from "@/pages/LandingPage";
 import { LoginPage } from "@/pages/LoginPage";
+import { ProductsPage } from "@/pages/ProductsPage";
 
 export function AppRouter() {
   return (
@@ -23,6 +24,7 @@ export function AppRouter() {
             <Route element={<AppLayout />}>
               <Route path="/dashboard" element={<DashboardPage />} />
               <Route path="/customers" element={<CustomersPage />} />
+              <Route path="/products" element={<ProductsPage />} />
               <Route path="/budgets" element={<BudgetsPage />} />
             </Route>
           </Route>

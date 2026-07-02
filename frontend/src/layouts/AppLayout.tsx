@@ -1,4 +1,4 @@
-import { LayoutDashboard, LogOut, Receipt, Users } from "lucide-react";
+import { LayoutDashboard, LogOut, Package, Receipt, Users } from "lucide-react";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 
 import { Button } from "@/components/ui/button";
@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 const navItems = [
   { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard, end: true },
   { to: "/customers", label: "Clientes", icon: Users, end: false },
+  { to: "/products", label: "Produtos", icon: Package, end: false },
   { to: "/budgets", label: "Orçamentos", icon: Receipt, end: false },
 ];
 

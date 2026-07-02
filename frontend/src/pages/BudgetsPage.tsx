@@ -6,7 +6,7 @@ import { CustomerSelect } from "@/components/budgets/CustomerSelect";
 import { ProductSearchPanel } from "@/components/budgets/ProductSearchPanel";
 import { createBudget, updateBudgetStatus } from "@/lib/api/budgets";
 import type { Customer } from "@/lib/api/customers";
-import type { Product } from "@/lib/data/products";
+import type { Product } from "@/lib/api/products";
 import {
   formatBudgetMessage,
   normalizePhoneForWhatsApp,

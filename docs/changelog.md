@@ -10,6 +10,11 @@ e o projeto adota o versionamento semântico ([SemVer](https://semver.org/lang/p
 ## [Não Lançado]
 
 ### Adicionado
+- **Módulo Produtos (HU-06.2)**:
+  - Contexto `product` no backend: CRUD + `PATCH /api/products/{id}/status` (`ACTIVE`/`INACTIVE`).
+  - `ProductsPage` com data table, busca, paginação, modal de criação/edição e toggle de status.
+  - Item **Produtos** na sidebar; catálogo do PDV passa a consumir a API (somente ativos).
+  - Seed de produtos em `data.sql` e testes `ProductControllerIntegrationTest`.
 - **Dashboard evoluído (HU-05.2)**:
   - `GET /api/dashboard/metrics` enriquecido: `statusSummary`, `averageTicket`, `conversionRate`,
     `topCustomers`, `recentBudgets`.
@@ -81,6 +86,7 @@ e o projeto adota o versionamento semântico ([SemVer](https://semver.org/lang/p
 - `.gitignore` estendido para artefatos de Node/frontend e `backend/target`.
 
 ### Alterado
+- **PDV (EP-07)**: catálogo mock removido; `ProductSearchPanel` integrado com `GET /api/products?status=ACTIVE`.
 - **Dashboard (HU-05.2)**: `DashboardPage` refatorada com layout grid responsivo (KPIs, gráficos, tabela);
   `GrossRevenueCard` substituído por `DashboardKpiGrid`.
 - Definida a **Arquitetura Hexagonal (Ports & Adapters)** para o backend, organizada por

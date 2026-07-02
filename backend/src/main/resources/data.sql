@@ -25,8 +25,22 @@ INSERT INTO budgets (id, tenant_id, customer_id, total_amount, status, created_a
 INSERT INTO budgets (id, tenant_id, customer_id, total_amount, status, created_at) VALUES
   (3, 2, 3, 2300.50, 'DRAFT', TIMESTAMP '2026-06-10 09:00:00');
 
+INSERT INTO products (id, tenant_id, name, sku, unit_price, status) VALUES
+  (1, 1, 'Notebook Pro 15"', 'NB-001', 4599.90, 'ACTIVE');
+INSERT INTO products (id, tenant_id, name, sku, unit_price, status) VALUES
+  (2, 1, 'Mouse Ergonômico', 'MS-002', 89.90, 'ACTIVE');
+INSERT INTO products (id, tenant_id, name, sku, unit_price, status) VALUES
+  (3, 1, 'Monitor 27" 4K', 'MN-004', 1899.00, 'ACTIVE');
+INSERT INTO products (id, tenant_id, name, sku, unit_price, status) VALUES
+  (4, 1, 'Mesa Ajustável', 'DK-014', 2199.00, 'ACTIVE');
+INSERT INTO products (id, tenant_id, name, sku, unit_price, status) VALUES
+  (5, 1, 'Licença Office 365', 'SW-015', 399.00, 'INACTIVE');
+INSERT INTO products (id, tenant_id, name, sku, unit_price, status) VALUES
+  (6, 2, 'Produto Beta', 'BT-001', 99.00, 'ACTIVE');
+
 -- Reinicia sequências de ID após inserts explícitos (H2 IDENTITY não avança sozinho)
 ALTER TABLE tenants ALTER COLUMN id RESTART WITH 3;
 ALTER TABLE users ALTER COLUMN id RESTART WITH 3;
 ALTER TABLE customers ALTER COLUMN id RESTART WITH 5;
 ALTER TABLE budgets ALTER COLUMN id RESTART WITH 4;
+ALTER TABLE products ALTER COLUMN id RESTART WITH 7;

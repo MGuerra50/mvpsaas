@@ -163,6 +163,12 @@ Planejamento de execução seguindo o framework **Scrum**, organizado em
 - ✅ TASK-06.1.3 — Busca em tempo real.
 - ✅ TASK-06.1.4 — Modal de criação/edição de cliente.
 
+### 🧩 HU-06.2 — Como gestor, quero gerenciar o catálogo de produtos.  `8 SP`
+- ✅ TASK-06.2.1 — API REST de produtos (`GET/POST/PUT/PATCH status`) com multi-tenant.
+- ✅ TASK-06.2.2 — `ProductsPage` com listagem, busca e paginação.
+- ✅ TASK-06.2.3 — Modal de criação/edição de produto (nome, SKU, preço).
+- ✅ TASK-06.2.4 — Ativar/inativar produtos; PDV consome apenas produtos `ACTIVE`.
+
 ---
 
 ## 📦 EP-07 — Construtor de Orçamentos (PDV) + WhatsApp
