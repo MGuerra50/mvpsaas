@@ -1,6 +1,6 @@
 import {
-  Bar,
-  BarChart,
+  Area,
+  AreaChart,
   CartesianGrid,
   ResponsiveContainer,
   Tooltip,
@@ -8,12 +8,9 @@ import {
   YAxis,
 } from "recharts";
 
+import { DashboardEmptyState } from "@/components/dashboard/DashboardEmptyState";
 import type { MonthlyRevenue } from "@/lib/api/dashboard";
-
-const currencyFormatter = new Intl.NumberFormat("pt-BR", {
-  style: "currency",
-  currency: "BRL",
-});
+import { currencyFormatter } from "@/lib/format/currency";
 
 type MonthlyRevenueChartProps = {
   data: MonthlyRevenue[];
@@ -31,9 +28,10 @@ export function MonthlyRevenueChart({ data, loading }: MonthlyRevenueChartProps)
 
   if (data.length === 0) {
     return (
-      <div className="flex h-80 items-center justify-center rounded-lg border border-border bg-card text-muted-foreground">
-        Nenhum dado de faturamento aprovado ainda.
-      </div>
+      <DashboardEmptyState
+        className="h-80"
+        message="Nenhum dado de faturamento aprovado ainda."
+      />
     );
   }
 
@@ -41,7 +39,13 @@ export function MonthlyRevenueChart({ data, loading }: MonthlyRevenueChartProps)
     <div className="rounded-lg border border-border bg-card p-6 shadow-sm">
       <h2 className="mb-4 text-lg font-semibold">Faturamento por mês</h2>
       <ResponsiveContainer width="100%" height={320}>
-        <BarChart data={data}>
+        <AreaChart data={data}>
+          <defs>
+            <linearGradient id="revenueGradient" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="5%" stopColor="#F97316" stopOpacity={0.35} />
+              <stop offset="95%" stopColor="#F97316" stopOpacity={0} />
+            </linearGradient>
+          </defs>
           <CartesianGrid strokeDasharray="3 3" vertical={false} />
           <XAxis dataKey="month" />
           <YAxis tickFormatter={(value) => currencyFormatter.format(Number(value))} width={100} />
@@ -49,8 +53,14 @@ export function MonthlyRevenueChart({ data, loading }: MonthlyRevenueChartProps)
             formatter={(value: number) => currencyFormatter.format(value)}
             labelFormatter={(label) => `Mês: ${label}`}
           />
-          <Bar dataKey="amount" fill="#F97316" radius={[4, 4, 0, 0]} />
-        </BarChart>
+          <Area
+            type="monotone"
+            dataKey="amount"
+            stroke="#F97316"
+            strokeWidth={2}
+            fill="url(#revenueGradient)"
+          />
+        </AreaChart>
       </ResponsiveContainer>
     </div>
   );

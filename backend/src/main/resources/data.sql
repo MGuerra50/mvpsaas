@@ -24,3 +24,9 @@ INSERT INTO budgets (id, tenant_id, customer_id, total_amount, status, created_a
   (2, 1, 2, 800.00, 'DRAFT', TIMESTAMP '2026-06-15 14:30:00');
 INSERT INTO budgets (id, tenant_id, customer_id, total_amount, status, created_at) VALUES
   (3, 2, 3, 2300.50, 'DRAFT', TIMESTAMP '2026-06-10 09:00:00');
+
+-- Reinicia sequências de ID após inserts explícitos (H2 IDENTITY não avança sozinho)
+ALTER TABLE tenants ALTER COLUMN id RESTART WITH 3;
+ALTER TABLE users ALTER COLUMN id RESTART WITH 3;
+ALTER TABLE customers ALTER COLUMN id RESTART WITH 5;
+ALTER TABLE budgets ALTER COLUMN id RESTART WITH 4;

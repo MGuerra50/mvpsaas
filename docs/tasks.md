@@ -147,6 +147,12 @@ Planejamento de execução seguindo o framework **Scrum**, organizado em
 - ✅ TASK-05.1.2 — Cards de métricas de topo (Faturamento Total Bruto).
 - ✅ TASK-05.1.3 — Gráficos centrais com **Recharts**.
 
+### 🧩 HU-05.2 — Como gestor, quero um dashboard completo com KPIs e visão operacional.  `8 SP`
+- ✅ TASK-05.2.1 — Estender `GET /api/dashboard/metrics` (statusSummary, ticket médio, conversão, top clientes, últimos orçamentos).
+- ✅ TASK-05.2.2 — Grid de 4 KPIs (faturamento, rascunhos, ticket médio, conversão).
+- ✅ TASK-05.2.3 — Gráfico de área (faturamento mensal), donut (status), barras horizontais (top clientes).
+- ✅ TASK-05.2.4 — Tabela de últimos orçamentos com badges de status e empty states com CTA.
+
 ---
 
 ## 📦 EP-06 — Módulo CRM (Clientes)

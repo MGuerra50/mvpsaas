@@ -10,6 +10,13 @@ e o projeto adota o versionamento semântico ([SemVer](https://semver.org/lang/p
 ## [Não Lançado]
 
 ### Adicionado
+- **Dashboard evoluído (HU-05.2)**:
+  - `GET /api/dashboard/metrics` enriquecido: `statusSummary`, `averageTicket`, `conversionRate`,
+    `topCustomers`, `recentBudgets`.
+  - Queries agregadas em `BudgetRepositoryPort` (contagem/soma por status, top clientes, orçamentos recentes).
+  - `DashboardKpiGrid`, `BudgetStatusChart` (donut), `TopCustomersChart`, `RecentBudgetsTable`.
+  - `MonthlyRevenueChart` migrado para **AreaChart**; utilitário compartilhado `lib/format/currency.ts`.
+  - Empty states com CTA "Criar orçamento" e badges de status via Tailwind.
 - **Construtor de Orçamentos / PDV (EP-07)**:
   - `BudgetsPage` com layout de duas colunas (busca de produtos, descontos, espelho dinâmico).
   - Catálogo mock de produtos, cálculo de totais em tempo real.
@@ -74,6 +81,8 @@ e o projeto adota o versionamento semântico ([SemVer](https://semver.org/lang/p
 - `.gitignore` estendido para artefatos de Node/frontend e `backend/target`.
 
 ### Alterado
+- **Dashboard (HU-05.2)**: `DashboardPage` refatorada com layout grid responsivo (KPIs, gráficos, tabela);
+  `GrossRevenueCard` substituído por `DashboardKpiGrid`.
 - Definida a **Arquitetura Hexagonal (Ports & Adapters)** para o backend, organizada por
   contexto de domínio (`tenant`, `auth`, `customer`, `budget`) + `shared/`. README e `tasks.md`
   atualizados com o diagrama, a estrutura de pacotes e as tasks refletindo domínio / ports / adapters.

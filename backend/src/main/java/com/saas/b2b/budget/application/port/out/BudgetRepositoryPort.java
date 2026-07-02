@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import com.saas.b2b.budget.domain.model.Budget;
 import com.saas.b2b.budget.domain.model.BudgetStatus;
+import com.saas.b2b.budget.domain.model.BudgetStatusMetric;
 import com.saas.b2b.budget.domain.model.MonthlyRevenue;
 
 public interface BudgetRepositoryPort {
@@ -21,4 +22,13 @@ public interface BudgetRepositoryPort {
 	BigDecimal sumApprovedTotalByTenantId(Long tenantId);
 
 	List<MonthlyRevenue> sumApprovedByMonth(Long tenantId);
+
+	BudgetStatusMetric aggregateByTenantIdAndStatus(Long tenantId, BudgetStatus status);
+
+	List<TopCustomerAggregate> findTopCustomersByApprovedRevenue(Long tenantId, int limit);
+
+	List<Budget> findRecentByTenantId(Long tenantId, int limit);
+
+	record TopCustomerAggregate(Long customerId, BigDecimal totalAmount, long budgetCount) {
+	}
 }

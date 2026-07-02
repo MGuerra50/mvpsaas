@@ -3,6 +3,7 @@ package com.saas.b2b.shared.config;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -14,6 +15,18 @@ import com.saas.b2b.shared.exception.TenantContextRequiredException;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+
+	@ExceptionHandler(DataIntegrityViolationException.class)
+	ResponseEntity<ErrorResponse> handleDataIntegrity(DataIntegrityViolationException ex) {
+		return ResponseEntity.status(HttpStatus.CONFLICT)
+				.body(new ErrorResponse("Conflito de dados: registro duplicado ou referência inválida."));
+	}
+
+	@ExceptionHandler(Exception.class)
+	ResponseEntity<ErrorResponse> handleUnexpected(Exception ex) {
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+				.body(new ErrorResponse("Erro interno do servidor."));
+	}
 
 	@ExceptionHandler(ResourceNotFoundException.class)
 	ResponseEntity<ErrorResponse> handleNotFound(ResourceNotFoundException ex) {

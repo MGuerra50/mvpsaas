@@ -58,7 +58,8 @@ class CustomerControllerIntegrationTest {
 						.contentType(MediaType.APPLICATION_JSON)
 						.content(createBody))
 				.andExpect(status().isCreated())
-				.andExpect(jsonPath("$.name").value("Novo Cliente"));
+				.andExpect(jsonPath("$.name").value("Novo Cliente"))
+				.andExpect(jsonPath("$.id").value(5));
 
 		mockMvc.perform(get("/api/customers/1")
 						.header("Authorization", "Bearer " + accessToken))

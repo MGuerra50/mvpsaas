@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 
-import { GrossRevenueCard } from "@/components/dashboard/GrossRevenueCard";
+import { BudgetStatusChart } from "@/components/dashboard/BudgetStatusChart";
+import { DashboardKpiGrid } from "@/components/dashboard/DashboardKpiGrid";
 import { MonthlyRevenueChart } from "@/components/dashboard/MonthlyRevenueChart";
+import { RecentBudgetsTable } from "@/components/dashboard/RecentBudgetsTable";
+import { TopCustomersChart } from "@/components/dashboard/TopCustomersChart";
 import { fetchDashboardMetrics, type DashboardMetrics } from "@/lib/api/dashboard";
 
 export function DashboardPage() {
@@ -41,14 +44,26 @@ export function DashboardPage() {
     <div className="space-y-8">
       <div>
         <h1 className="text-2xl font-bold">Dashboard</h1>
-        <p className="text-muted-foreground">Visão geral do faturamento do seu negócio.</p>
+        <p className="text-muted-foreground">Visão geral do faturamento e orçamentos do seu negócio.</p>
       </div>
 
       {error && <p className="text-sm text-destructive">{error}</p>}
 
-      <GrossRevenueCard value={metrics?.grossRevenue ?? null} loading={loading} />
+      <DashboardKpiGrid metrics={metrics} loading={loading} />
 
-      <MonthlyRevenueChart data={metrics?.monthlyRevenue ?? []} loading={loading} />
+      <div className="grid gap-6 lg:grid-cols-3">
+        <div className="lg:col-span-2">
+          <MonthlyRevenueChart data={metrics?.monthlyRevenue ?? []} loading={loading} />
+        </div>
+        <div>
+          <BudgetStatusChart statusSummary={metrics?.statusSummary ?? null} loading={loading} />
+        </div>
+      </div>
+
+      <div className="grid gap-6 lg:grid-cols-2">
+        <TopCustomersChart data={metrics?.topCustomers ?? []} loading={loading} />
+        <RecentBudgetsTable data={metrics?.recentBudgets ?? []} loading={loading} />
+      </div>
     </div>
   );
 }

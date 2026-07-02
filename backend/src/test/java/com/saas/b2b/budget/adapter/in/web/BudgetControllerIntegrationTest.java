@@ -55,7 +55,8 @@ class BudgetControllerIntegrationTest {
 						.contentType(MediaType.APPLICATION_JSON)
 						.content(body))
 				.andExpect(status().isCreated())
-				.andExpect(jsonPath("$.status").value("DRAFT"));
+				.andExpect(jsonPath("$.status").value("DRAFT"))
+				.andExpect(jsonPath("$.id").value(4));
 	}
 
 	@Test
